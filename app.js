@@ -10,9 +10,12 @@ const io = require("socket.io")(server);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/harvard_club", (err) => {
-  console.log(err ? err : "connected to MongoDB");
-});
+mongoose.connect(
+  "mongodb+srv://admin-loren:esAhUVrt7EBPaEZ@cluster0.1wf1u.mongodb.net/harvard_club",
+  (err) => {
+    console.log(err ? err : "connected to MongoDB");
+  }
+);
 
 mongoose.set("returnOriginal", false);
 
@@ -88,6 +91,6 @@ app.delete("/", (req, res) => {
   });
 });
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("Server started on port 3000");
 });
